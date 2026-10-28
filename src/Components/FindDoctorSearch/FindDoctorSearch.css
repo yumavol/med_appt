@@ -1,31 +1,3 @@
-/* Doctor search section with specialty dropdown */
-.finddoctor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  padding: 72px 0;
-}
-
-.finddoctor__header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-align: center;
-}
-
-.finddoctor__title {
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.finddoctor__subtitle {
-  font-size: 16px;
-  color: var(--text);
-}
-
 .finddoctor__search {
   position: relative;
   width: 100%;
@@ -131,34 +103,4 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--placeholder);
-}
-
-@media (max-width: 768px) {
-  .finddoctor {
-    padding: 48px 0;
-  }
-
-  .finddoctor__title {
-    font-size: 28px;
-  }
-}
-
-.finddoctor__doctors {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100%;
-}
-
-.finddoctor__summary {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-align: center;
-}
-
-.finddoctor__count {
-  font-size: 24px;
-  font-weight: 700;
 }

@@ -9,7 +9,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Landing_Page from './Components/Landing_Page/Landing_Page';
 import Login from './Components/Login/Login';
 import Sign_up from './Components/Sign_up/Sign_up';
-import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
+import BookingConsultation from './Components/BookingConsultation/BookingConsultation';
 
 // Function component for the main App
 function App() {
@@ -27,7 +27,7 @@ function App() {
           <Route path="/" element={<Landing_Page />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Sign_up />} />
-          <Route path="/test-search" element={<FindDoctorSearch />} />
+          <Route path="/appointments" element={<BookingConsultation />} />
         </Routes>
       </BrowserRouter>
     </div>
