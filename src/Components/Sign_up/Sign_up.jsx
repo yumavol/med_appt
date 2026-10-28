@@ -111,8 +111,13 @@ const Sign_Up = () => {
             <label htmlFor="phone">Phone</label>
             <input
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))} // Keep digits only
               type="tel"
+              inputMode="numeric"
+              maxLength={10}
+              pattern="\d{10}"
+              title="Phone number must be exactly 10 digits"
+              required
               name="phone"
               id="phone"
               className="field__input"

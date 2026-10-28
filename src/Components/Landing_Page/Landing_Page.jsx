@@ -19,7 +19,7 @@ const Landing_Page = () => {
         </p>
         {/* Get Started takes new visitors to the sign up page */}
         <Link to="/signup" className="btn btn--primary landing__cta">
-          Get Started&nbsp;&nbsp;→
+          Get Started
         </Link>
       </div>
       <img className="landing__visual" src={heroImage} alt="Smiling doctor in a white coat" width="560" height="520" />
