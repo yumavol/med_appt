@@ -7,6 +7,20 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const handleClick = () => setMenuOpen(!menuOpen);
 
+  const isLoggedIn = Boolean(sessionStorage.getItem('auth-token'));
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('auth-token');
+    sessionStorage.removeItem('name');
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('phone');
+    localStorage.removeItem('doctorData');
+    Object.keys(localStorage)
+      .filter((key) => key.startsWith('reviewFormData_'))
+      .forEach((key) => localStorage.removeItem(key));
+    window.location.reload();
+  };
+
   return (
     <nav>
       <Link to="/" className="nav__logo">
@@ -20,7 +34,9 @@ const Navbar = () => {
       <div className={menuOpen ? 'nav__menu active' : 'nav__menu'}>
         <ul className="nav__links">
           <li className="link">
-            <NavLink to="/" end>Home</NavLink>
+            <NavLink to="/" end>
+              Home
+            </NavLink>
           </li>
           <li className="link">
             <NavLink to="/appointments">Appointments</NavLink>
@@ -33,12 +49,20 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="nav__auth">
-          <Link to="/login" className="btn btn--ghost">
-            Login
-          </Link>
-          <Link to="/signup" className="btn btn--primary">
-            Sign Up
-          </Link>
+          {isLoggedIn ? (
+            <button type="button" className="btn btn--primary" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link to="/login" className="btn btn--ghost">
+                Login
+              </Link>
+              <Link to="/signup" className="btn btn--primary">
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
