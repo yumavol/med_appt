@@ -3,6 +3,8 @@ import React from 'react';
 import '../ReviewForm/ReviewForm.css';
 import './ReportsLayout.css';
 
+const reportUrl = '/patient_report.pdf';
+
 const reports = [
   { doctorName: 'Dr. John Doe', speciality: 'Cardiology' },
   { doctorName: 'Dr. Jane Smith', speciality: 'Dermatology' },
@@ -33,14 +35,14 @@ const ReportsLayout = () => {
                   <span className="reviews__tag">{speciality}</span>
                 </td>
                 <td>
-                  <button type="button" className="btn btn--primary">
+                  <a href={reportUrl} target="_blank" rel="noreferrer" className="btn btn--primary">
                     View Report
-                  </button>
+                  </a>
                 </td>
                 <td>
-                  <button type="button" className="btn btn--ghost reports__download">
+                  <a href={reportUrl} download="patient_report.pdf" className="btn btn--ghost reports__download">
                     Download Report
-                  </button>
+                  </a>
                 </td>
               </tr>
             ))}
