@@ -1,0 +1,144 @@
+/* Doctor search section with specialty dropdown */
+.finddoctor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 72px 0;
+}
+
+.finddoctor__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.finddoctor__title {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.finddoctor__subtitle {
+  font-size: 16px;
+  color: var(--text);
+}
+
+.finddoctor__search {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+}
+
+/* Input with attached search button (Figma: Input / Text) */
+.finddoctor__bar {
+  display: flex;
+  background-color: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.finddoctor__bar:focus-within {
+  outline: 2px solid var(--primary);
+  outline-offset: -1px;
+}
+
+.finddoctor__input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 16px;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 16px;
+  line-height: 21px;
+  color: var(--primary);
+}
+
+.finddoctor__input::placeholder {
+  color: var(--placeholder);
+}
+
+.finddoctor__input:focus {
+  outline: none;
+}
+
+.finddoctor__button {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border: none;
+  border-left: 1px solid var(--border);
+  background: none;
+  cursor: pointer;
+}
+
+/* Dropdown list of specialties */
+.finddoctor__results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(15, 23, 41, 0.06);
+  overflow: hidden;
+}
+
+.finddoctor__result {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+
+.finddoctor__result + .finddoctor__result {
+  border-top: 1px solid var(--border);
+}
+
+.finddoctor__result:hover {
+  background-color: var(--bg-landing);
+}
+
+.finddoctor__result-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg);
+}
+
+.finddoctor__result-name {
+  flex: 1;
+  font-size: 16px;
+}
+
+.finddoctor__result-tag {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--placeholder);
+}
+
+@media (max-width: 768px) {
+  .finddoctor {
+    padding: 48px 0;
+  }
+
+  .finddoctor__title {
+    font-size: 28px;
+  }
+}
