@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css';
 import logo from './logo.png';
+import { clearAppointments } from '../../appointments';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,6 +17,7 @@ const Navbar = () => {
     sessionStorage.removeItem('email');
     sessionStorage.removeItem('phone');
     localStorage.removeItem('doctorData');
+    clearAppointments();
     Object.keys(localStorage)
       .filter((key) => key.startsWith('reviewFormData_'))
       .forEach((key) => localStorage.removeItem(key));

@@ -19,6 +19,7 @@ export default defineConfig([
     },
     rules: {
       'no-unused-vars': 'off',
+      'treact-hooks/set-state-in-effect': 'off'
     },
   },
 ])

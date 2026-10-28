@@ -10,6 +10,7 @@ import Landing_Page from './Components/Landing_Page/Landing_Page';
 import Login from './Components/Login/Login';
 import Sign_up from './Components/Sign_up/Sign_up';
 import BookingConsultation from './Components/BookingConsultation/BookingConsultation';
+import Notification from './Components/Notification/Notification';
 
 // Function component for the main App
 function App() {
@@ -21,14 +22,17 @@ function App() {
         {/* Display the Navbar component */}
         <Navbar />
 
-        {/* Set up the Routes for different pages */}
-        <Routes>
-          {/* Define individual Route components for different pages */}
-          <Route path="/" element={<Landing_Page />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Sign_up />} />
-          <Route path="/appointments" element={<BookingConsultation />} />
-        </Routes>
+        {/* Wrap the Routes so booked appointment details show on every page */}
+        <Notification>
+          {/* Set up the Routes for different pages */}
+          <Routes>
+            {/* Define individual Route components for different pages */}
+            <Route path="/" element={<Landing_Page />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Sign_up />} />
+            <Route path="/appointments" element={<BookingConsultation />} />
+          </Routes>
+        </Notification>
       </BrowserRouter>
     </div>
   );

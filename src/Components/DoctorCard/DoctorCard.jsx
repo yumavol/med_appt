@@ -3,14 +3,22 @@ import React, { useRef, useState } from 'react';
 import './DoctorCard.css';
 import doctorPhoto from '../../assets/doctor-photo.jpg';
 import AppointmentForm from '../AppointmentForm/AppointmentForm';
+import { getAppointments, saveAppointment } from '../../appointments';
 
 const DoctorCard = ({ name, speciality, experience, ratings, profilePic = doctorPhoto }) => {
   const dialogRef = useRef(null);
-  const [appointment, setAppointment] = useState(null);
+  const [appointment, setAppointment] = useState(() => getAppointments()[name] ?? null);
 
   const handleFormSubmit = (details) => {
-    setAppointment(details);
+    const booked = { ...details, speciality };
+    setAppointment(booked);
+    saveAppointment(name, booked);
     dialogRef.current.close();
+  };
+
+  const handleCancel = () => {
+    setAppointment(null);
+    saveAppointment(name, null);
   };
 
   const handleDialogClick = (e) => {
@@ -42,7 +50,7 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic = doctor
           <p>
             {appointment.name} · {appointment.phone}
           </p>
-          <button type="button" className="btn btn--danger btn--block" onClick={() => setAppointment(null)}>
+          <button type="button" className="btn btn--danger btn--block" onClick={handleCancel}>
             Cancel Appointment
           </button>
         </div>
