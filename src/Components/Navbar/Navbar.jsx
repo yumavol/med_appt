@@ -54,7 +54,18 @@ const Navbar = () => {
         <div className="nav__auth">
           {isLoggedIn ? (
             <>
-              <span className="nav__user">Hi, {userName}</span>
+              <div className="welcome-user">
+                <button type="button" className="nav__user" aria-haspopup="true">
+                  Welcome, {userName}
+                </button>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link to="/profile" onClick={(e) => e.currentTarget.blur()}>
+                      Your Profile
+                    </Link>
+                  </li>
+                </ul>
+              </div>
               <button type="button" className="btn btn--danger" onClick={handleLogout}>
                 Logout
               </button>
