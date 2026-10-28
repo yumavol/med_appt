@@ -61,9 +61,9 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic = doctor
         </button>
       )}
 
-      <dialog ref={dialogRef} className="doctor-card__dialog" onClick={handleDialogClick} aria-label={`Book an appointment with ${name}`}>
-        <div className="doctor-card__dialog-body">
-          <button type="button" className="doctor-card__close" onClick={() => dialogRef.current.close()} aria-label="Close">
+      <dialog ref={dialogRef} className="dialog" onClick={handleDialogClick} aria-label={`Book an appointment with ${name}`}>
+        <div className="dialog__body">
+          <button type="button" className="dialog__close" onClick={() => dialogRef.current.close()} aria-label="Close">
             ×
           </button>
           {details}

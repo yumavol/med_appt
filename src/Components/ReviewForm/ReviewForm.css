@@ -90,6 +90,36 @@
   color: var(--placeholder);
 }
 
+.reviews__table td.reviews__given {
+  white-space: normal;
+}
+
+.reviews__text {
+  max-width: 260px;
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.reviews__form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reviews__form-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.reviews__form-subtitle {
+  font-size: 16px;
+  color: var(--text);
+}
+
 @media (max-width: 1024px) {
   .reviews {
     padding: 48px 0;

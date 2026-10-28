@@ -1,0 +1,47 @@
+.give-review {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.give-review__textarea {
+  resize: vertical;
+}
+
+.give-review__rating {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.give-review__rating legend {
+  margin-bottom: 8px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.give-review__stars {
+  display: flex;
+  gap: 4px;
+}
+
+.give-review__star {
+  position: relative;
+  display: flex;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.give-review__star input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.give-review__star:has(input:focus-visible) {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
