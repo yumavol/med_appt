@@ -1,6 +1,5 @@
 import React from 'react';
 
-import '../ReviewForm/ReviewForm.css';
 import './ReportsLayout.css';
 
 const reportUrl = '/patient_report.pdf';
@@ -12,11 +11,11 @@ const reports = [
 
 const ReportsLayout = () => {
   return (
-    <section className="reviews">
-      <h1 className="reviews__title">Reports</h1>
+    <section className="reports">
+      <h1 className="reports__title">Reports</h1>
 
-      <div className="reviews__card">
-        <table className="reviews__table">
+      <div className="reports__card">
+        <table className="reports__table">
           <thead>
             <tr>
               <th>S.No.</th>
@@ -30,9 +29,9 @@ const ReportsLayout = () => {
             {reports.map(({ doctorName, speciality }, index) => (
               <tr key={doctorName}>
                 <td>{index + 1}</td>
-                <td className="reviews__doctor">{doctorName}</td>
+                <td className="reports__doctor">{doctorName}</td>
                 <td>
-                  <span className="reviews__tag">{speciality}</span>
+                  <span className="reports__tag">{speciality}</span>
                 </td>
                 <td>
                   <a href={reportUrl} target="_blank" rel="noreferrer" className="btn btn--primary">
