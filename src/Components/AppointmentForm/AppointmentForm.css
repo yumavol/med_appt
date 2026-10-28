@@ -1,0 +1,9 @@
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.appointment-form__submit {
+  margin-top: 8px;
+}
