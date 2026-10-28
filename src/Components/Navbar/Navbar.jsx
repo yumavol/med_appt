@@ -71,6 +71,11 @@ const Navbar = () => {
                       Your Profile
                     </Link>
                   </li>
+                  <li>
+                    <Link to="/reports" onClick={(e) => e.currentTarget.blur()}>
+                      Your Reports
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <button type="button" className="btn btn--danger" onClick={handleLogout}>
