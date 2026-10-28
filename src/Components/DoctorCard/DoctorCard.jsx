@@ -5,7 +5,7 @@ import doctorPhoto from '../../assets/doctor-photo.jpg';
 import AppointmentForm from '../AppointmentForm/AppointmentForm';
 import { getAppointments, saveAppointment } from '../../appointments';
 
-const DoctorCard = ({ name, speciality, experience, ratings, profilePic = doctorPhoto }) => {
+const DoctorCard = ({ name, speciality, experience, ratings, profilePic = doctorPhoto, Form = AppointmentForm }) => {
   const dialogRef = useRef(null);
   const [appointment, setAppointment] = useState(() => getAppointments()[name] ?? null);
 
@@ -67,7 +67,7 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic = doctor
             ×
           </button>
           {details}
-          <AppointmentForm onSubmit={handleFormSubmit} />
+          <Form onSubmit={handleFormSubmit} />
         </div>
       </dialog>
     </article>

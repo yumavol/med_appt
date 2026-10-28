@@ -12,7 +12,7 @@ const doctors = [
   { name: 'Dr. Dudu Red', speciality: 'General Physician', experience: 18, ratings: 4 },
 ];
 
-const BookingConsultation = () => {
+const BookingConsultation = ({ Form }) => {
   const [search, setSearch] = useState('');
   const query = search.trim().toLowerCase();
   const filteredDoctors = doctors.filter((doctor) => doctor.speciality.toLowerCase().includes(query));
@@ -35,7 +35,7 @@ const BookingConsultation = () => {
         </div>
         <div className="doctor-cards">
           {filteredDoctors.map((doctor) => (
-            <DoctorCard key={doctor.name} {...doctor} />
+            <DoctorCard key={doctor.name} {...doctor} Form={Form} />
           ))}
         </div>
       </div>
