@@ -1,45 +1,48 @@
-import React from 'react'; // Importing the necessary modules from React library
+import React, { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import './Navbar.css';
+import logo from './logo.png';
 
-import './LandingPage.css'; // Importing the CSS styles for the Landing_Page component
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const handleClick = () => setMenuOpen(!menuOpen);
 
-// Defining the Function component Landing_Page
-const Landing_Page = () => {
   return (
-    <section className="hero-section">
-      {' '}
-      {/* Creating a section with class name 'hero-section' */}
-      <div>
-        <div data-aos="fade-up" className="flex-hero">
-          {' '}
-          {/* Creating a div with data-aos attribute and class name 'flex-hero' */}
-          <h1>
-            Your Health
-            <br />
-            <span className="text-gradient">Our Responsibility</span>
-          </h1>
-          <div className="blob-cont">
-            {' '}
-            {/* Creating a div with class name 'blob-cont' */}
-            <div className="blue blob"></div> {/* Creating a blue blob inside the 'blob-cont' div */}
-          </div>
-          <div class="blob-cont">
-            {' '}
-            {/* Creating another div with class name 'blob-cont' */}
-            <div className="blue1 blob"></div> {/* Creating a different blue blob inside the second 'blob-cont' div */}
-          </div>
-          <h4>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque at quae ducimus. Suscipit omnis quibusdam non cum rem
-            voluptatem!
-          </h4>
-          <a href="#services">
-            {' '}
-            {/* Creating a hyperlink to jump to the 'services' section */}
-            <button className="button">Get Started</button> {/* Creating a button with class name 'button' */}
-          </a>
+    <nav>
+      <Link to="/" className="nav__logo">
+        <img src={logo} alt="StayHealthy" width="196" height="40" />
+      </Link>
+
+      <div className="nav__icon" onClick={handleClick}>
+        <i className={menuOpen ? 'fa fa-times' : 'fa fa-bars'}></i>
+      </div>
+
+      <div className={menuOpen ? 'nav__menu active' : 'nav__menu'}>
+        <ul className="nav__links">
+          <li className="link">
+            <NavLink to="/" end>Home</NavLink>
+          </li>
+          <li className="link">
+            <NavLink to="/appointments">Appointments</NavLink>
+          </li>
+          <li className="link">
+            <NavLink to="/blog">Health Blog</NavLink>
+          </li>
+          <li className="link">
+            <NavLink to="/reviews">Reviews</NavLink>
+          </li>
+        </ul>
+        <div className="nav__auth">
+          <Link to="/login" className="btn btn--ghost">
+            Login
+          </Link>
+          <Link to="/signup" className="btn btn--primary">
+            Sign Up
+          </Link>
         </div>
       </div>
-    </section>
+    </nav>
   );
 };
 
-export default Landing_Page; // Exporting the Landing_Page component to be used in other parts of the application
+export default Navbar;
