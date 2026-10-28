@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css';
 import logo from './logo.png';
@@ -6,6 +6,13 @@ import { clearAppointments } from '../../appointments';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [, refresh] = useReducer((count) => count + 1, 0);
+
+  useEffect(() => {
+    window.addEventListener('profile-change', refresh);
+    return () => window.removeEventListener('profile-change', refresh);
+  }, []);
+
   const handleClick = () => setMenuOpen(!menuOpen);
 
   const isLoggedIn = Boolean(sessionStorage.getItem('auth-token'));

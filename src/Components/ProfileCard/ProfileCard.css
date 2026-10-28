@@ -70,6 +70,23 @@
   overflow-wrap: anywhere;
 }
 
+.profile__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.profile__message {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
 .profile__status {
   padding: 72px 0;
   text-align: center;
