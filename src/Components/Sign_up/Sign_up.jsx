@@ -1,16 +1,20 @@
 // Following code has been commented with appropriate comments for your reference.
 import React, { useState } from 'react';
-import './Sign_Up.css';
+import './Sign_up.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { API_URL } from '../../../config';
+import { API_URL } from '../../config';
+import chevronDown from '../../assets/chevron-down.svg';
+import eyeOff from '../../assets/eye-off.svg';
 
 // Function component for Sign Up form
 const Sign_Up = () => {
   // State variables using useState hook
+  const [role, setRole] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [showerr, setShowerr] = useState(''); // State to show error messages
   const navigate = useNavigate(); // Navigation hook from react-router
 
@@ -55,72 +59,112 @@ const Sign_Up = () => {
     }
   };
 
+  // Function to clear all fields
+  const reset = () => {
+    setRole('');
+    setName('');
+    setEmail('');
+    setPhone('');
+    setPassword('');
+    setShowerr('');
+  };
+
   // JSX to render the Sign Up form
   return (
-    <div className="container" style={{ marginTop: '5%' }}>
-      <div className="signup-grid">
-        <div className="signup-form">
-          <form method="POST" onSubmit={register}>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                name="email"
-                id="email"
-                className="form-control"
-                placeholder="Enter your email"
-                aria-describedby="helpId"
-              />
-              {showerr && (
-                <div className="err" style={{ color: 'red' }}>
-                  {showerr}
-                </div>
-              )}
+    <section className="auth">
+      <div className="auth__card">
+        <div className="auth__header">
+          <h1 className="auth__title">Sign Up</h1>
+          <p className="auth__subtitle">
+            Already a member? <Link to="/login">Login</Link>
+          </p>
+        </div>
+        <form className="auth__form" method="POST" onSubmit={register}>
+          <div className="field">
+            <label htmlFor="role">Role</label>
+            <div className="field__box">
+              <select value={role} onChange={(e) => setRole(e.target.value)} name="role" id="role" className="field__input" required>
+                <option value="" disabled>
+                  Select role
+                </option>
+                <option value="doctor">Doctor</option>
+                <option value="patient">Patient</option>
+              </select>
+              <span className="field__icon">
+                <img src={chevronDown} alt="" width="20" height="20" />
+              </span>
             </div>
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input
-                value={name}
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                name="name"
-                id="name"
-                className="form-control"
-                placeholder="Enter your name"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="phone">Phone</label>
-              <input
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                type="tel"
-                name="phone"
-                id="phone"
-                className="form-control"
-                placeholder="Enter your phone number"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
+          </div>
+          <div className="field">
+            <label htmlFor="name">Name</label>
+            <input
+              value={name}
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              name="name"
+              id="name"
+              className="field__input"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="phone">Phone</label>
+            <input
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              type="tel"
+              name="phone"
+              id="phone"
+              className="field__input"
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="email">Email</label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              name="email"
+              id="email"
+              className="field__input"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="password">Password</label>
+            <div className="field__box">
               <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                type={showPassword ? 'text' : 'password'}
                 name="password"
                 id="password"
-                className="form-control"
+                className="field__input"
                 placeholder="Enter your password"
-                aria-describedby="helpId"
               />
+              <button
+                type="button"
+                className="field__icon"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+              >
+                <img src={eyeOff} alt="" width="20" height="20" />
+              </button>
             </div>
-          </form>
-        </div>
+          </div>
+          {showerr && <div className="auth__error">{showerr}</div>}
+          <div className="auth__actions">
+            <button type="submit" className="btn btn--primary btn--block">
+              Submit
+            </button>
+            <button type="button" className="btn btn--danger btn--block" onClick={reset}>
+              Reset
+            </button>
+          </div>
+        </form>
       </div>
-    </div>
+    </section>
     /* Note: Sign up role is not stored in the database. Additional logic can be implemented for this based on your React code. */
   );
 };
