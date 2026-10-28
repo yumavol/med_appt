@@ -45,6 +45,10 @@ const Login = () => {
       // If authentication token is received, store it in session storage
       sessionStorage.setItem('auth-token', json.authtoken);
       sessionStorage.setItem('email', email);
+      const user = await fetch(`${API_URL}/api/auth/user`, { headers: { email } })
+        .then((res) => res.json())
+        .catch(() => ({}));
+      if (user.name) sessionStorage.setItem('name', user.name);
 
       // Redirect to home page and reload the window
       navigate('/');

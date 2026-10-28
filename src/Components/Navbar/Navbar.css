@@ -51,6 +51,13 @@ nav {
   align-items: center;
 }
 
+.nav__user {
+  padding: 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .welcome-user {
   position: relative;
   cursor: pointer;

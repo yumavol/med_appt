@@ -8,6 +8,7 @@ const Navbar = () => {
   const handleClick = () => setMenuOpen(!menuOpen);
 
   const isLoggedIn = Boolean(sessionStorage.getItem('auth-token'));
+  const userName = sessionStorage.getItem('name') || sessionStorage.getItem('email')?.split('@')[0];
 
   const handleLogout = () => {
     sessionStorage.removeItem('auth-token');
@@ -50,9 +51,12 @@ const Navbar = () => {
         </ul>
         <div className="nav__auth">
           {isLoggedIn ? (
-            <button type="button" className="btn btn--primary" onClick={handleLogout}>
-              Logout
-            </button>
+            <>
+              <span className="nav__user">Hi, {userName}</span>
+              <button type="button" className="btn btn--danger" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
           ) : (
             <>
               <Link to="/login" className="btn btn--ghost">

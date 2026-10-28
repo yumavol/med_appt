@@ -7,8 +7,9 @@ import DoctorCard from '../DoctorCard/DoctorCard';
 const doctors = [
   { name: 'Dr. Jiao Yang', speciality: 'Dentist', experience: 9, ratings: 5 },
   { name: 'Dr. Denis Raj', speciality: 'Dentist', experience: 24, ratings: 4 },
-  { name: 'Dr. Lyn Christie', speciality: 'Dentist', experience: 11, ratings: 3 },
+  { name: 'Dr. Lyn Christie', speciality: 'Dermatologist', experience: 11, ratings: 3 },
   { name: 'Dr. Jessica White', speciality: 'Dentist', experience: 18, ratings: 4 },
+  { name: 'Dr. Dudu Red', speciality: 'General Physician', experience: 18, ratings: 4 },
 ];
 
 const BookingConsultation = () => {
