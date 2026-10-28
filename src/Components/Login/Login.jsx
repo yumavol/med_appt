@@ -90,6 +90,9 @@ const Login = () => {
               type="email"
               name="email"
               id="email"
+              required
+              pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+              title="Enter a valid email, e.g. name@example.com"
               className="field__input"
               placeholder="Enter your email"
             />
