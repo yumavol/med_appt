@@ -1,0 +1,66 @@
+.doctor-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.doctor-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px 24px 24px;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(15, 23, 41, 0.06);
+}
+
+.doctor-card__details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.doctor-card__photo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.doctor-card__name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.doctor-card__speciality {
+  font-size: 16px;
+  color: var(--text);
+}
+
+.doctor-card__experience,
+.doctor-card__ratings {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.doctor-card__stars {
+  letter-spacing: 2px;
+  color: #f5b400;
+}
+
+.doctor-card__book {
+  flex-direction: column;
+  gap: 2px;
+}
+
+.doctor-card__fee {
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.8;
+}

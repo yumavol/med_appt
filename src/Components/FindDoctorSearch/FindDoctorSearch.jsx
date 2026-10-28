@@ -1,9 +1,16 @@
-import React, { useState } from 'react'; // Importing the necessary modules from React library
+import React, { useState } from 'react';
 
-import './FindDoctorSearch.css'; // Importing the CSS styles for the FindDoctorSearch component
+import './FindDoctorSearch.css';
 import searchIcon from '../../assets/search.svg';
+import DoctorCard from '../DoctorCard/DoctorCard';
 
-// List of doctor specialties shown in the search dropdown
+const doctors = [
+  { name: 'Dr. Jiao Yang', speciality: 'Dentist', experience: 9, ratings: 5 },
+  { name: 'Dr. Denis Raj', speciality: 'Dentist', experience: 24, ratings: 4 },
+  { name: 'Dr. Lyn Christie', speciality: 'Dentist', experience: 11, ratings: 3 },
+  { name: 'Dr. Jessica White', speciality: 'Dentist', experience: 18, ratings: 4 },
+];
+
 const initSpeciality = [
   'Dentist',
   'Gynecologist/obstetrician',
@@ -17,6 +24,8 @@ const initSpeciality = [
 const FindDoctorSearch = () => {
   const [hideResult, setHideResult] = useState(true);
   const [search, setSearch] = useState('');
+  const query = search.trim().toLowerCase();
+  const filteredDoctors = doctors.filter((doctor) => doctor.speciality.toLowerCase().includes(query));
 
   const specialities = initSpeciality.filter((speciality) => speciality.toLowerCase().includes(search.toLowerCase()));
 
@@ -52,7 +61,6 @@ const FindDoctorSearch = () => {
         {!hideResult && specialities.length > 0 && (
           <ul className="finddoctor__results">
             {specialities.map((speciality) => (
-              // onMouseDown fires before the input's onBlur, so the click still registers
               <li key={speciality} className="finddoctor__result" onMouseDown={() => handleDoctorSelect(speciality)}>
                 <span className="finddoctor__result-icon">
                   <img src={searchIcon} alt="" width="14" height="14" />
@@ -63,6 +71,20 @@ const FindDoctorSearch = () => {
             ))}
           </ul>
         )}
+      </div>
+
+      <div className="finddoctor__doctors">
+        <div className="finddoctor__summary">
+          <h2 className="finddoctor__count">
+            {filteredDoctors.length} doctors available{query && ` in ${search.trim()}`}
+          </h2>
+          <p className="finddoctor__subtitle">Book appointments with minimum wait-time & verified doctor details</p>
+        </div>
+        <div className="doctor-cards">
+          {filteredDoctors.map((doctor) => (
+            <DoctorCard key={doctor.name} {...doctor} />
+          ))}
+        </div>
       </div>
     </section>
   );
