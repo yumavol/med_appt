@@ -1,3 +1,3 @@
-# Medical Appointment Booking
+# med_appt
 
-A web application that lets patients find doctors, book and manage medical appointments, and get instant consultations online.
+Medical Appointment Booking, A web application that lets patients find doctors, book and manage medical appointments, and get instant consultations online.
