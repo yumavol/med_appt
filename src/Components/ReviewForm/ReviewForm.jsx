@@ -1,25 +1,25 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import './ReviewForm.css';
 import GiveReviews from '../GiveReviews/GiveReviews';
 import starFilled from '../../assets/star-filled.svg';
 import starEmpty from '../../assets/star-empty.svg';
 
-const consultations = [
-  { doctorName: 'Dr. John Doe', speciality: 'Cardiology' },
-  { doctorName: 'Dr. Jane Smith', speciality: 'Dermatology' },
-  { doctorName: 'Dr. Sarah Lee', speciality: 'Orthopedics' },
+const reports = [
+  { serialNumber: 1, doctorName: 'Dr. John Doe', speciality: 'Cardiology' },
+  { serialNumber: 2, doctorName: 'Dr. Jane Smith', speciality: 'Dermatology' },
+  { serialNumber: 3, doctorName: 'Dr. Sarah Lee', speciality: 'Orthopedics' },
 ];
 
 const starValues = [1, 2, 3, 4, 5];
 
-const storageKey = (doctorName) => `reviewFormData_${doctorName}`;
+const storageKey = 'reviewData';
 
-const loadReview = (doctorName) => {
+const loadReviewData = () => {
   try {
-    return JSON.parse(localStorage.getItem(storageKey(doctorName)));
+    return JSON.parse(localStorage.getItem(storageKey)) ?? {};
   } catch {
-    return null;
+    return {};
   }
 };
 
@@ -32,27 +32,12 @@ const Stars = ({ rating }) => (
 );
 
 const ReviewForm = () => {
-  const dialogRef = useRef(null);
-  const [reviews, setReviews] = useState(() =>
-    Object.fromEntries(consultations.map(({ doctorName }) => [doctorName, loadReview(doctorName)]))
-  );
-  const [activeDoctor, setActiveDoctor] = useState(null);
+  const [reviewData, setReviewData] = useState(loadReviewData);
 
-  const openForm = (doctorName) => {
-    setActiveDoctor(doctorName);
-    dialogRef.current.showModal();
-  };
-
-  const closeForm = () => dialogRef.current.close();
-
-  const handleDialogClick = (e) => {
-    if (e.target === dialogRef.current) closeForm();
-  };
-
-  const handleReviewSubmit = (review) => {
-    localStorage.setItem(storageKey(activeDoctor), JSON.stringify(review));
-    setReviews({ ...reviews, [activeDoctor]: review });
-    closeForm();
+  const handleReviewSubmit = (serialNumber, review) => {
+    const next = { ...reviewData, [serialNumber]: review };
+    localStorage.setItem(storageKey, JSON.stringify(next));
+    setReviewData(next);
   };
 
   return (
@@ -71,19 +56,17 @@ const ReviewForm = () => {
             </tr>
           </thead>
           <tbody>
-            {consultations.map(({ doctorName, speciality }, index) => {
-              const review = reviews[doctorName];
+            {reports.map((report) => {
+              const review = reviewData[report.serialNumber];
               return (
-                <tr key={doctorName}>
-                  <td>{index + 1}</td>
-                  <td className="reviews__doctor">{doctorName}</td>
+                <tr key={report.serialNumber}>
+                  <td>{report.serialNumber}</td>
+                  <td className="reviews__doctor">{report.doctorName}</td>
                   <td>
-                    <span className="reviews__tag">{speciality}</span>
+                    <span className="reviews__tag">{report.speciality}</span>
                   </td>
                   <td>
-                    <button type="button" className="btn btn--primary" disabled={Boolean(review)} onClick={() => openForm(doctorName)}>
-                      {review ? 'Reviewed' : 'Give Review'}
-                    </button>
+                    <GiveReviews report={report} reviewData={reviewData} onSubmit={handleReviewSubmit} />
                   </td>
                   <td className="reviews__given">
                     {review ? (
@@ -101,22 +84,6 @@ const ReviewForm = () => {
           </tbody>
         </table>
       </div>
-
-      <dialog ref={dialogRef} className="dialog" onClick={handleDialogClick} aria-labelledby="review-dialog-title">
-        <div className="dialog__body">
-          <button type="button" className="dialog__close" onClick={closeForm} aria-label="Close">
-            ×
-          </button>
-          <div className="reviews__form-header">
-            <h2 id="review-dialog-title" className="reviews__form-title">
-              Give Your Review
-            </h2>
-            <p className="reviews__form-subtitle">{activeDoctor}</p>
-          </div>
-
-          <GiveReviews key={activeDoctor} onSubmit={handleReviewSubmit} />
-        </div>
-      </dialog>
     </section>
   );
 };
