@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import './BookingConsultation.css';
 import FindDoctorSearch from '../FindDoctorSearch/FindDoctorSearch';
@@ -13,7 +14,8 @@ const doctors = [
 ];
 
 const BookingConsultation = ({ Form }) => {
-  const [search, setSearch] = useState('');
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get('speciality') ?? '';
   const query = search.trim().toLowerCase();
   const filteredDoctors = doctors.filter((doctor) => doctor.speciality.toLowerCase().includes(query));
 
@@ -24,7 +26,7 @@ const BookingConsultation = ({ Form }) => {
         <p className="booking__subtitle">Search by speciality to see who is available.</p>
       </div>
 
-      <FindDoctorSearch search={search} onSearch={setSearch} />
+      <FindDoctorSearch />
 
       <div className="booking__doctors">
         <div className="booking__header">
